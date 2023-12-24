@@ -22,6 +22,14 @@ local function updatePartPosition()
         Part.CFrame = CFrame.new(0, -10000, 0)
     end
 end
+local function Notify(title, context)
+    Fluent:Notify({
+        Title = tostring(title),
+        Content = tostring(context),
+        SubContent = "",
+        Duration = 5
+    })
+end
 game:GetService("RunService").RenderStepped:Connect(updatePartPosition)
 local function updateGravity()
     if Gravity then
@@ -46,6 +54,7 @@ local function UniqueTp(a, b, c, speedoftpNTP)
         task.wait()
     end
 end
+local tweenService = game:GetService("TweenService")
 local function Tween(posX, posY, posZ, speed)
     tweenInfo = TweenInfo.new(speed, Enum.EasingStyle.Linear)
     tween = tweenService:Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(posX, posY, posZ)})
@@ -56,7 +65,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = _G.ScriptName .. " v." .. _G.VersionNGen1,
+    Title = "Developer Tools",
     SubTitle = "by TTJY",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
@@ -275,7 +284,7 @@ do
 
     --DEVELOPER
     Tabs.Developer:AddSection("Developer Anti Cheat Detector")
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V1",
         Description = "Instance | Normal | Front",
         Callback = function()
@@ -286,7 +295,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V1",
         Description = "Instance | Normal | Up",
         Callback = function()
@@ -297,7 +306,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V1",
         Description = "Instance | Normal | X, Y",
         Callback = function()
@@ -308,7 +317,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V2",
         Description = "Tween | Unique | Front",
         Callback = function()
@@ -327,7 +336,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V2",
         Description = "Tween | Unique | Up",
         Callback = function()
@@ -346,7 +355,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V2",
         Description = "Tween | Unique | X, Y",
         Callback = function()
@@ -365,7 +374,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V3",
         Description = "Tween | Normal | Front",
         Callback = function()
@@ -384,7 +393,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V3",
         Description = "Tween | Normal | Up",
         Callback = function()
@@ -403,7 +412,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Teleport V3",
         Description = "Tween | Normal | X, Y",
         Callback = function()
@@ -422,13 +431,13 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Gravity",
         Description = "0 | Notify",
         Callback = function()
-            game.workSpace.Gravity = 0
+            game.workspace.Gravity = 0
             task.wait(2)
-            if game.workSpace.Gravity == 0 then
+            if game.workspace.Gravity == 0 then
                 Fluent:Notify({
                     Title = "Anti Cheat Detector",
                     Content = "No Anti Cheat Found For Gravity",
@@ -444,10 +453,10 @@ do
                 })
             end
             task.wait()
-            game.workSpace.Gravity = originalGravity
+            game.workspace.Gravity = originalGravity
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "WalkSpeed",
         Description = "1000 | Notify",
         Callback = function()
@@ -472,7 +481,7 @@ do
             game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = originalWalkSpeed
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "JumpPower",
         Description = "1000 | Notify",
         Callback = function()
@@ -497,7 +506,7 @@ do
             game.Players.LocalPlayer.Character.Humanoid.JumpPower = originalJumpPower
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Create Part",
         Description = "WorkSpace | Notify | Near",
         Callback = function()
@@ -510,7 +519,7 @@ do
             PartWST.Parent = workspace
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Create ScreenGui V1",
         Description = "PlayerGui | Notify | Kickable",
         Callback = function()
@@ -534,7 +543,7 @@ do
             end
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Developer:AddButton({
         Title = "Create ScreenGui V2",
         Description = "CoreGui | Notify | Kickable",
         Callback = function()
@@ -555,6 +564,183 @@ do
                     SubContent = "",
                     Duration = 5
                 })
+            end
+        end
+    })
+    Tabs.Developer:AddSection("Executer Support Fucntion")
+    Tabs.Developer:AddButton({
+        Title = "Check Environment Functions 1",
+        Description = "getgenv() | getrenv() | getreg() | getgc() | getinstances() | getnilinstances() | getloadedmodules() | getconnections()",
+        Callback = function()
+            if getgenv() then
+                Notify("getgenv()", "Supported")
+            else
+                Notify("getgenv()", "Not Supported")
+            end
+            if getrenv() then
+                Notify("getrenv()", "Supported")
+            else
+                Notify("getrenv()", "Not Supported")
+            end
+            if getreg() then
+                Notify("getreg()", "Supported")
+            else
+                Notify("getreg()", "Not Supported")
+            end
+            task.wait(3)
+            if getgc() then
+                Notify("getgc()", "Supported")
+            else
+                Notify("getgc()", "Not Supported")
+            end
+            if getinstances() then
+                Notify("getinstances()", "Supported")
+            else
+                Notify("getinstances()", "Not Supported")
+            end
+            if getnilinstances() then
+                Notify("getnilinstances()", "Supported")
+            else
+                Notify("getnilinstances()", "Not Supported")
+            end
+            task.wait(3)
+            if getloadedmodules() then
+                Notify("getloadedmodules()", "Supported")
+            else
+                Notify("getloadedmodules()", "Not Supported")
+            end
+            if getconnections() then
+                Notify("getconnections()", "Supported")
+            else
+                Notify("getconnections()", "Not Supported")
+            end
+        end
+    })
+    Tabs.Developer:AddButton({
+        Title = "Check Environment Functions 2",
+        Description = "firesignal() | fireclickdetector() | fireproximityprompt() | firetouchinterest() | gethiddenproperty() | sethiddenproperty() | setsimulationradius() | identifyexecutor()",
+        Callback = function()
+            if firesignal() then
+                Notify("firesignal()", "Supported")
+            else
+                Notify("firesignal()", "Not Supported")
+            end
+            if fireclickdetector() then
+                Notify("fireclickdetector()", "Supported")
+            else
+                Notify("fireclickdetector()", "Not Supported")
+            end
+            if fireproximityprompt() then
+                Notify("fireproximityprompt()", "Supported")
+            else
+                Notify("fireproximityprompt()", "Not Supported")
+            end
+            task.wait(3)
+            if firetouchinterest() then
+                Notify("firetouchinterest()", "Supported")
+            else
+                Notify("firetouchinterest()", "Not Supported")
+            end
+            if gethiddenproperty() then
+                Notify("gethiddenproperty()", "Supported")
+            else
+                Notify("gethiddenproperty()", "Not Supported")
+            end
+            if sethiddenproperty() then
+                Notify("sethiddenproperty()", "Supported")
+            else
+                Notify("sethiddenproperty()", "Not Supported")
+            end
+            task.wait(3)
+            if setsimulationradius() then
+                Notify("setsimulationradius()", "Supported")
+            else
+                Notify("setsimulationradius()", "Not Supported")
+            end
+            if identifyexecutor() then
+                Notify("identifyexecutor()", "Supported")
+            else
+                Notify("identifyexecutor()", "Not Supported")
+            end
+        end
+    })
+    Tabs.Developer:AddButton({
+        Title = "Check Script Functions",
+        Description = "getsenv() | getcallingscript() | getscriptclosure() | getscripthash() | getscriptbytecode() | unlock_module() | lock_module()",
+        Callback = function()
+            if getsenv() then
+                Notify("getsenv()", "Supported")
+            else
+                Notify("getsenv()", "Not Supported")
+            end
+            if getcallingscript() then
+                Notify("getcallingscript()", "Supported")
+            else
+                Notify("getcallingscript()", "Not Supported")
+            end
+            if getscriptclosure() then
+                Notify("getscriptclosure()", "Supported")
+            else
+                Notify("getscriptclosure()", "Not Supported")
+            end
+            task.wait(3)
+            if getscripthash() then
+                Notify("getscripthash()", "Supported")
+            else
+                Notify("getscripthash()", "Not Supported")
+            end
+            if getscriptbytecode() then
+                Notify("getscriptbytecode()", "Supported")
+            else
+                Notify("getscriptbytecode()", "Not Supported")
+            end
+            if unlock_module() then
+                Notify("unlock_module()", "Supported")
+            else
+                Notify("unlock_module()", "Not Supported")
+            end
+            task.wait(3)
+            if lock_module() then
+                Notify("lock_module()", "Supported")
+            else
+                Notify("lock_module()", "Not Supported")
+            end
+        end
+    })
+    Tabs.Developer:AddButton({
+        Title = "Check Table Functions",
+        Description = "getrawmetatable() | setrawmetatable() | setreadonly() | make_readonly() | make_writeable() | isreadonly()",
+        Callback = function()
+            if getrawmetatable() then
+                Notify("getrawmetatable()", "Supported")
+            else
+                Notify("getrawmetatable()", "Not Supported")
+            end
+            if setrawmetatable() then
+                Notify("setrawmetatable()", "Supported")
+            else
+                Notify("setrawmetatable()", "Not Supported")
+            end
+            if setreadonly() then
+                Notify("setreadonly()", "Supported")
+            else
+                Notify("setreadonly()", "Not Supported")
+            end
+            task.wait(3)
+            if make_readonly() then
+                Notify("make_readonly()", "Supported")
+            else
+                Notify("make_readonly()", "Not Supported")
+            end
+            if make_writeable() then
+                Notify("make_writeable()", "Supported")
+            else
+                Notify("make_writeable()", "Not Supported")
+            end
+            if isreadonly() then
+                Notify("isreadonly()", "Supported")
+            else
+                Notify("isreadonly()", "Not Supported")
             end
         end
     })
