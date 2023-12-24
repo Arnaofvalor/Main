@@ -859,7 +859,7 @@ do
         Setwalkspeed = Value
     end)
     local SliderJ = Tabs.Developer:AddSlider("Slider", {
-        Title = "WalkSpeed",
+        Title = "JumpPower",
         Description = "",
         Default = originalJumpPower,
         Min = 0,
@@ -872,12 +872,12 @@ do
     SliderJ:OnChanged(function(Value)
         Setjumppower = Value
     end)
-    local Toggle = Tabs.PlayerTab:AddToggle("MyToggle", {Title = "Enabled/Disabled WalkSpeed", Default = false })
+    local Toggle = Tabs.Developer:AddToggle("MyToggle", {Title = "Enabled/Disabled WalkSpeed", Default = false })
 
     Toggle:OnChanged(function()
         walkspeedrequest = Options.MyToggle.Value
     end)
-    local Toggle = Tabs.PlayerTab:AddToggle("MyToggle", {Title = "Enabled/Disabled JumpPower", Default = false })
+    local Toggle = Tabs.Developer:AddToggle("MyToggle", {Title = "Enabled/Disabled JumpPower", Default = false })
 
     Toggle:OnChanged(function()
         jumppowerrequest = Options.MyToggle.Value
