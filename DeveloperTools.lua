@@ -744,6 +744,203 @@ do
             end
         end
     })
+    Tabs.Developer:AddButton({
+        Title = "Check Input",
+        Description = "iswindowactive() | keypress() | mouse1click() | mouse1press() | mouse1release() | mouse2click() | mouse2press() | mouse2release()",
+        Callback = function()
+            if iswindowactive() then
+                Notify("iswindowactive()", "Supported")
+            else
+                Notify("iswindowactive()", "Not Supported")
+            end
+            if keypress() then
+                Notify("keypress()", "Supported")
+            else
+                Notify("keypress()", "Not Supported")
+            end
+            if mouse1click() then
+                Notify("mouse1click()", "Supported")
+            else
+                Notify("mouse1click()", "Not Supported")
+            end
+            task.wait(3)
+            if mouse1press() then
+                Notify("mouse1press()", "Supported")
+            else
+                Notify("mouse1press()", "Not Supported")
+            end
+            if mouse1release() then
+                Notify("mouse1release()", "Supported")
+            else
+                Notify("mouse1release()", "Not Supported")
+            end
+            if mouse2click() then
+                Notify("mouse2click()", "Supported")
+            else
+                Notify("mouse2click()", "Not Supported")
+            end
+            task.wait(3)
+            if mouse2press() then
+                Notify("mouse2press()", "Supported")
+            else
+                Notify("mouse2press()", "Not Supported")
+            end
+            if mouse2release() then
+                Notify("mouse2release()", "Supported")
+            else
+                Notify("mouse2release()", "Not Supported")
+            end
+        end
+    })
+    Tabs.Developer:AddButton({
+        Title = "Check Input",
+        Description = "hookfunction() | newcclosure()",
+        Callback = function()
+            if hookfunction() then
+                Notify("hookfunction()", "Supported")
+            else
+                Notify("hookfunction()", "Not Supported")
+            end
+            if newcclosure() then
+                Notify("newcclosure()", "Supported")
+            else
+                Notify("newcclosure()", "Not Supported")
+            end
+        end
+    })
+    Tabs.Developer:AddButton({
+        Title = "Check Misc",
+        Description = "loadstring() | checkcaller() | islclosure() | iscclosure() | setclipboard() | setfflag() | getfflag() | getnamecallmethod() | getcustomasset()",
+        Callback = function()
+            if loadstring() then
+                Notify("loadstring()", "Supported")
+            else
+                Notify("loadstring()", "Not Supported")
+            end
+            if checkcaller() then
+                Notify("checkcaller()", "Supported")
+            else
+                Notify("checkcaller()", "Not Supported")
+            end
+            if islclosure() then
+                Notify("islclosure()", "Supported")
+            else
+                Notify("islclosure()", "Not Supported")
+            end
+            task.wait(3)
+            if iscclosure() then
+                Notify("iscclosure()", "Supported")
+            else
+                Notify("iscclosure()", "Not Supported")
+            end
+            if setclipboard() then
+                Notify("setclipboard()", "Supported")
+            else
+                Notify("setclipboard()", "Not Supported")
+            end
+            if setfflag() then
+                Notify("setfflag()", "Supported")
+            else
+                Notify("setfflag()", "Not Supported")
+            end
+            task.wait(3)
+            if getfflag() then
+                Notify("getfflag()", "Supported")
+            else
+                Notify("getfflag()", "Not Supported")
+            end
+            if getnamecallmethod() then
+                Notify("getnamecallmethod()", "Supported")
+            else
+                Notify("getnamecallmethod()", "Not Supported")
+            end
+            if getcustomasset() then
+                Notify("getcustomasset()", "Supported")
+            else
+                Notify("getcustomasset()", "Not Supported")
+            end
+        end
+    })
+    Tabs.Developer:AddButton({
+        Title = "Check Input",
+        Description = "saveinstance() | randomstring() | setfpscap() | request()",
+        Callback = function()
+            if saveinstance() then
+                Notify("saveinstance()", "Supported")
+            else
+                Notify("saveinstance()", "Not Supported")
+            end
+            if randomstring() then
+                Notify("randomstring()", "Supported")
+            else
+                Notify("randomstring()", "Not Supported")
+            end
+            if setfpscap() then
+                Notify("setfpscap()", "Supported")
+            else
+                Notify("setfpscap()", "Not Supported")
+            end
+            task.wait(3)
+            if request() then
+                Notify("request()", "Supported")
+            else
+                Notify("request()", "Not Supported")
+            end
+        end
+    })
+    Tabs.Developer:AddButton({
+        Title = "Check FileSystem",
+        Description = "writefile() | appendfile() | readfile() | loadfile() | isfile() | makefolder() | delfolder() | delfile() | listfiles()",
+        Callback = function()
+            if writefile() then
+                Notify("writefile()", "Supported")
+            else
+                Notify("writefile()", "Not Supported")
+            end
+            if appendfile() then
+                Notify("appendfile()", "Supported")
+            else
+                Notify("appendfile()", "Not Supported")
+            end
+            if readfile() then
+                Notify("readfile()", "Supported")
+            else
+                Notify("readfile()", "Not Supported")
+            end
+            task.wait(3)
+            if loadfile() then
+                Notify("loadfile()", "Supported")
+            else
+                Notify("loadfile()", "Not Supported")
+            end
+            if isfile() then
+                Notify("isfile()", "Supported")
+            else
+                Notify("isfile()", "Not Supported")
+            end
+            if makefolder() then
+                Notify("makefolder()", "Supported")
+            else
+                Notify("makefolder()", "Not Supported")
+            end
+            task.wait(3)
+            if delfolder() then
+                Notify("delfolder()", "Supported")
+            else
+                Notify("delfolder()", "Not Supported")
+            end
+            if delfile() then
+                Notify("delfile()", "Supported")
+            else
+                Notify("delfile()", "Not Supported")
+            end
+            if listfiles() then
+                Notify("listfiles()", "Supported")
+            else
+                Notify("listfiles()", "Not Supported")
+            end
+        end
+    })
     Tabs.Developer:AddSection("Developer Bypass")
     Tabs.Developer:AddSection("Developer Clipboard")
     Tabs.Developer:AddSection("Developer Tools")
