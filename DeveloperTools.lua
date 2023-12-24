@@ -569,10 +569,21 @@ do
     })
     Tabs.Developer:AddSection("Executer Support Fucntion")
     Tabs.Developer:AddButton({
-        Title = "Check Environment Functions 1",
-        Description = "getgenv() | getrenv() | getreg() | getgc() | getinstances() | getnilinstances() | getloadedmodules() | getconnections()",
-        Callback = function()
-            table.foreach(getgenv(), Notify(warn, "Supported"))
+        Title = "Check Environment Functions",
+        Description = "",
+        Callback = function()            
+            local globalEnv = getgenv()
+            local send = 0
+            for key, value in pairs(globalEnv) do
+                if send ~= 3 then
+                    task.wait(3)
+                    send = 0
+                else
+                    Notify(key, value)
+                    send = send + 1
+                end
+            end
+            
         end
     })
     Tabs.Developer:AddSection("Developer Bypass")
