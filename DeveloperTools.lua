@@ -1,3 +1,56 @@
+repeat task.wait() until game:IsLoaded()
+local Far = false
+local UFast = false
+local Float = false
+local Gravity = false
+local originalGravity = game.workSpace.Gravity
+local originalWalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+local originalJumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
+local Part = Instance.new("Part")
+Part.Size = Vector3.new(2, 0.2, 1.5)
+Part.Material = Enum.Material.Grass
+Part.Anchored = true
+Part.Transparency = 1
+Part.Parent = workspace
+local function updatePartPosition()
+    local character = game.Players.LocalPlayer.Character
+    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+    
+    if humanoidRootPart and Float then
+        Part.CFrame = humanoidRootPart.CFrame * CFrame.new(0, -3.1, 0)
+    else
+        Part.CFrame = CFrame.new(0, -10000, 0)
+    end
+end
+game:GetService("RunService").RenderStepped:Connect(updatePartPosition)
+local function updateGravity()
+    if Gravity then
+        game.workspace.Gravity = 0
+    else
+
+    end
+end
+game:GetService("RunService").RenderStepped:Connect(updateGravity)
+local function UniqueTp(a, b, c, speedoftpNTP)
+    local hrd = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local p = hrd.Position
+    local currentPos = Vector3.new(p.x, p.y, p.z)
+    local targetPos = Vector3.new(a, b, c)
+    
+    local direction = (targetPos - currentPos).Unit
+    local distance = (targetPos - currentPos).Magnitude
+    local steps = math.floor(distance / speedoftpNTP) 
+    for i = 1, steps do
+        currentPos = currentPos + direction * speedoftpNTP 
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(currentPos)
+        task.wait()
+    end
+end
+local function Tween(posX, posY, posZ, speed)
+    tweenInfo = TweenInfo.new(speed, Enum.EasingStyle.Linear)
+    tween = tweenService:Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(posX, posY, posZ)})
+    tween:Play()
+end
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -222,10 +275,313 @@ do
 
     --DEVELOPER
     Tabs.Developer:AddSection("Developer Anti Cheat Detector")
+    Tabs.Main:AddButton({
+        Title = "Teleport V1",
+        Description = "Instance | Normal | Front",
+        Callback = function()
+            if Far then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(100, 0, 0)
+            else
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(10, 0, 0)
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V1",
+        Description = "Instance | Normal | Up",
+        Callback = function()
+            if Far then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 100, 0)
+            else
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 10, 0)
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V1",
+        Description = "Instance | Normal | X, Y",
+        Callback = function()
+            if Far then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(100, 100, 0)
+            else
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(10, 10, 0)
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V2",
+        Description = "Tween | Unique | Front",
+        Callback = function()
+            if Far then
+                if UFast then
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                else
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                end
+            else
+                if UFast then
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                else
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                end
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V2",
+        Description = "Tween | Unique | Up",
+        Callback = function()
+            if Far then
+                if UFast then
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                else
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                end
+            else
+                if UFast then
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                else
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                end
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V2",
+        Description = "Tween | Unique | X, Y",
+        Callback = function()
+            if Far then
+                if UFast then
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                else
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                end
+            else
+                if UFast then
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                else
+                    UniqueTp(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                end
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V3",
+        Description = "Tween | Normal | Front",
+        Callback = function()
+            if Far then
+                if UFast then
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                else
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                end
+            else
+                if UFast then
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                else
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                end
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V3",
+        Description = "Tween | Normal | Up",
+        Callback = function()
+            if Far then
+                if UFast then
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                else
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                end
+            else
+                if UFast then
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                else
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                end
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Teleport V3",
+        Description = "Tween | Normal | X, Y",
+        Callback = function()
+            if Far then
+                if UFast then
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                else
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 100, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                end
+            else
+                if UFast then
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 1)
+                else
+                    Tween(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z, 10)
+                end
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Gravity",
+        Description = "0 | Notify",
+        Callback = function()
+            game.workSpace.Gravity = 0
+            task.wait(2)
+            if game.workSpace.Gravity == 0 then
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "No Anti Cheat Found For Gravity",
+                    SubContent = "",
+                    Duration = 5
+                })
+            else
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "Anti Cheat Found For Gravity",
+                    SubContent = "",
+                    Duration = 5
+                })
+            end
+            task.wait()
+            game.workSpace.Gravity = originalGravity
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "WalkSpeed",
+        Description = "1000 | Notify",
+        Callback = function()
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 1000
+            task.wait(2)
+            if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 1000 then
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "No Anti Cheat Found For WalkSpeed",
+                    SubContent = "",
+                    Duration = 5
+                })
+            else
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "Anti Cheat Found For WalkSpeed",
+                    SubContent = "",
+                    Duration = 5
+                })
+            end
+            task.wait()
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = originalWalkSpeed
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "JumpPower",
+        Description = "1000 | Notify",
+        Callback = function()
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = 1000
+            task.wait(2)
+            if game.Players.LocalPlayer.Character.Humanoid.JumpPower == 1000 then
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "No Anti Cheat Found For JumpPower",
+                    SubContent = "",
+                    Duration = 5
+                })
+            else
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "Anti Cheat Found For JumpPower",
+                    SubContent = "",
+                    Duration = 5
+                })
+            end
+            task.wait()
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = originalJumpPower
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Create Part",
+        Description = "WorkSpace | Notify | Near",
+        Callback = function()
+            local PartWST = Instance.new("Part")
+            PartWST.Size = Vector3.new(2, 0.2, 1.5)
+            PartWST.Material = Enum.Material.Grass
+            PartWST.Anchored = true
+            PartWST.Transparency = 0
+            PartWST.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.X + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Y + 10, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position.Z)
+            PartWST.Parent = workspace
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Create ScreenGui V1",
+        Description = "PlayerGui | Notify | Kickable",
+        Callback = function()
+            local SGui = Instance.new("ScreenGui")
+            SGui.Parent = game.Players.LocalPlayer.PlayerGui
+            task.wait(5)
+            if SGui then
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "No Anti Cheat Found",
+                    SubContent = "",
+                    Duration = 5
+                })
+            else
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "Anti Cheat Found | ScreenGui being delete from the PlayerGui",
+                    SubContent = "",
+                    Duration = 5
+                })
+            end
+        end
+    })
+    Tabs.Main:AddButton({
+        Title = "Create ScreenGui V2",
+        Description = "CoreGui | Notify | Kickable",
+        Callback = function()
+            local SGui2 = Instance.new("ScreenGui")
+            SGui2.Parent = game.CoreGui
+            task.wait(5)
+            if SGui2 then
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "No Anti Cheat Found",
+                    SubContent = "",
+                    Duration = 5
+                })
+            else
+                Fluent:Notify({
+                    Title = "Anti Cheat Detector",
+                    Content = "Anti Cheat Found | ScreenGui being delete from the CoreGui",
+                    SubContent = "",
+                    Duration = 5
+                })
+            end
+        end
+    })
     Tabs.Developer:AddSection("Developer Bypass")
     Tabs.Developer:AddSection("Developer Clipboard")
     Tabs.Developer:AddSection("Developer Tools")
-    
+    Tabs.Developer:AddSection("Setting")
+    local Toggle = Tabs.Developer:AddToggle("MyToggle", {Title = "Far", Default = false })
+
+    Toggle:OnChanged(function()
+        Far = Options.MyToggle.Value
+    end)
+    local Toggle = Tabs.Developer:AddToggle("MyToggle2", {Title = "UFast", Default = false })
+
+    Toggle:OnChanged(function()
+        UFast = Options.MyToggle2.Value
+    end)
+    local Toggle = Tabs.Developer:AddToggle("MyToggle3", {Title = "Float", Default = false })
+
+    Toggle:OnChanged(function()
+        Float = Options.MyToggle3.Value
+    end)
+    local Toggle = Tabs.Developer:AddToggle("MyToggle4", {Title = "Gravity 0", Default = false })
+
+    Toggle:OnChanged(function()
+        Gravity = Options.MyToggle3.Value
+    end)
 end
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
