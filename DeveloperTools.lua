@@ -609,22 +609,14 @@ do
             else
                 Notify("getloadedmodules()", "Not Supported")
             end
-            if getconnections() then
-                Notify("getconnections()", "Supported")
-            else
-                Notify("getconnections()", "Not Supported")
-            end
+            Notify("getconnections()", "You have to check by yourself | ttjyhub.cloud")
         end
     })
     Tabs.Developer:AddButton({
         Title = "Check Environment Functions 2",
         Description = "firesignal() | fireclickdetector() | fireproximityprompt() | firetouchinterest() | gethiddenproperty() | sethiddenproperty() | setsimulationradius() | identifyexecutor()",
         Callback = function()
-            if firesignal() then
-                Notify("firesignal()", "Supported")
-            else
-                Notify("firesignal()", "Not Supported")
-            end
+            Notify("firesignal()", "You have to check by yourself | ttjyhub.cloud")
             if fireclickdetector() then
                 Notify("fireclickdetector()", "Supported")
             else
