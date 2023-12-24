@@ -567,7 +567,7 @@ do
             end
         end
     })
-    Tabs.Developer:AddSection("Executer Support Fucntion")
+    Tabs.Developer:AddSection("Executer Support Fucntions")
     Tabs.Developer:AddButton({
         Title = "Check Environment Functions",
         Description = "",
@@ -576,11 +576,11 @@ do
             local send = 0
             for key, value in pairs(globalEnv) do
                 if send ~= 3 then
-                    task.wait(3)
-                    send = 0
-                else
                     Notify(key, value)
                     send = send + 1
+                else
+                    task.wait(3)
+                    send = 0
                 end
             end
             
