@@ -5,4 +5,5 @@ _G.Version = {
     ["Pet Simulator 99"] = "UPV1D",
     ["Weird Stitch Dad"] = "UPV1D",
     ["Tower Of Hell"] = "UPV1D",
+    ["MadCity"] = "UPV1D",
 }
