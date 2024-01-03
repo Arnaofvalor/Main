@@ -1,5 +1,5 @@
 _G.Version = {
-    ["The Mimic"] = "UPV1D",
+    ["The Mimic"] = "UP1FV",
     ["Dragon Adventure"] = "UPV1D",
     ["Blox Fruit"] = "UPV1D",
     ["Pet Simulator 99"] = "UPV1D",
