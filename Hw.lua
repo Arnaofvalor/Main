@@ -1,1 +1,1 @@
-""test", -- 123-456-789 / PERM", -- 123-456-789 / PERM
+""=", -- _G.Hwid / PERM", -- _G.Hwid / PERM
