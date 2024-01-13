@@ -9,5 +9,7 @@ _G.Hwid = {
     "6c3080df-a052-45ed-b473-4541b081fcd7", -- keng / 13-02
     "c46edf57-c594-4e97-8d9e-1a90aa6244ef", -- Luffy / 23-02
     "0f70d80a-4d70-4424-92a0-2ed62dea7328", -- Ferris / 23-02
-    "bc476849-c211-4737-88f4-d12c7a19bfbb", -- Daniel  / PERM
+    "bc476849-c211-4737-88f4-d12c7a19bfbb", --Denial / PERM
+    "3d836cb8-554a-41a3-ba87-aa089664099f", --Bao / PERM
+    "5a7d3235-f262-4ac0-9f8b-ea4298095448", --Pannisnitro / 13/03
 }
