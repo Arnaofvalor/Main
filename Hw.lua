@@ -8,4 +8,5 @@ _G.Hwid = {
     "b1910b58-4435-49cd-b097-6a0107e084e4", -- Zum / PERM
     "6c3080df-a052-45ed-b473-4541b081fcd7", -- keng / 13-02
     "c46edf57-c594-4e97-8d9e-1a90aa6244ef", -- Luffy / 23-02
+    "0f70d80a-4d70-4424-92a0-2ed62dea7328", -- Ferris / 23-02
 }
