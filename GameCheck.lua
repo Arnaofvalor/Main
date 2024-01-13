@@ -35,6 +35,10 @@ if placeId == 537413528 then
     _G.ScriptName = "BABFT"
 end
 task.wait()
+if placeId == 1224212277 then
+    _G.ScriptName = "Madcity"
+end
+task.wait()
 if _G.ScriptName == "The Mimic" then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Yumiara/Script/main/TheMimic.lua"))()
 elseif _G.ScriptName == "Dragon Adventure" then
@@ -43,6 +47,8 @@ elseif _G.ScriptName == "Tower Of Hell" then
     --loadstring
 elseif _G.ScriptName == "BABFT" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Yumiara/Script/main/BABFT.lua"))()
+elseif _G.ScriptName == "Madcity" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Yumiara/Script/main/Madcity.lua"))()
 else
     game.Players.LocalPlayer:Kick("Not supported")
 end
