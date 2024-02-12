@@ -40,7 +40,7 @@ if placeId == 1224212277 then
 end
 task.wait()
 if _G.ScriptName == "The Mimic" then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/Yumiara/Script/main/TheMimic.lua"))()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Arnaofvalor/Script/main/TheMimic.lua"))()
 elseif _G.ScriptName == "Dragon Adventure" then
     --loadstring
 elseif _G.ScriptName == "Tower Of Hell" then
